@@ -234,7 +234,6 @@ export default function Login() {
   const [password, setSenha] = useState('')
   const [erro, setErro] = useState('')
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
 
 
   function generateCodeVerifier(): string {
@@ -257,30 +256,26 @@ export default function Login() {
     setLoading(true)
 
     try {
-      // 1. Autentica no Spring — cria a sessão
-      const res = await fetch('http://localhost:8080/auth/login', {
+       const res = await fetch('http://localhost:8080/auth/login', {
         method: 'POST',
         credentials: 'include',
-        headers: { 'Content-Type': 'application/json' }, // ← JSON
+        headers: { 'Content-Type': 'application/json' },  
         body: JSON.stringify({ email: email, password: password }),
-        redirect: 'manual', // ← não segue o redirect do Spring
+        redirect: 'manual', // n segue o redirect do Spring
       })
 
-      // Spring retorna 302 quando o login deu certo
-      if (res.ok) {
-        login({ nome: 'João', email: 'joao@email.com' })
-
-        // 2. Gera PKCE
-        const verifier = generateCodeVerifier()
+       if (res.ok) {
+        //login({nome: "asdf"})
+        
+         const verifier = generateCodeVerifier()
         sessionStorage.setItem('code_verifier', verifier)
         const challenge = await generateCodeChallenge(verifier)
 
-        // 3. Redireciona para o Spring emitir o code
-        // Spring já sabe que está logado pelo cookie de sessão
+         // Spring já sabe que está logado pelo cookie de sessão
         window.location.href =
           `http://localhost:8080/oauth2/authorize` +
           `?response_type=code&client_id=web` +
-          `&redirect_uri=http://localhost:5173/callback` +
+          `&redirect_uri=http://localhost:5173/AltassCookies/callback` +
           `&scope=write` +
           `&code_challenge=${challenge}` +
           `&code_challenge_method=S256`

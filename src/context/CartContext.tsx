@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 import type { ReactNode } from 'react'
 import type { CarrinhoResponse, ItemCarrinhoResponse } from '../types'
 import { carrinhoService } from '../services/api'
+import { useAuth } from './AuthContext'
 
 interface CartContextValue {
   carrinho: CarrinhoResponse | null
@@ -20,6 +21,7 @@ const CartContext = createContext<CartContextValue | null>(null)
 export function CartProvider({ children }: { children: ReactNode }) {
   const [carrinho, setCarrinho] = useState<CarrinhoResponse | null>(null)
   const [loading, setLoading] = useState(false)
+  const { user } = useAuth();
 
   const recarregar = useCallback(async () => {
     try {
@@ -37,7 +39,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     recarregar()
-  }, [recarregar])
+  }, [recarregar, user])
 
   const adicionarItem = async (produtoId: number, quantidade = 1) => {
     await carrinhoService.adicionar(produtoId, quantidade)

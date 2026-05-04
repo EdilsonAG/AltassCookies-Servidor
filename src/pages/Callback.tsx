@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 
 export default function Callback() {
     const navigate = useNavigate()
     const executado = useRef(false)
+      const { login } = useAuth()
+
 
 
 
@@ -15,10 +18,9 @@ export default function Callback() {
         const code = params.get('code')
         const codeVerifier = sessionStorage.getItem('code_verifier')
 
-        // Manda pro SEU backend — não pro Spring diretamente
-        fetch('http://localhost:8080/auth/callback', {
+         fetch('http://localhost:8080/auth/callback', {
             method: 'POST',
-            credentials: 'include',  // ← importante para receber o cookie
+            credentials: 'include',   
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
                 code: code!,
@@ -29,6 +31,7 @@ export default function Callback() {
                 if (!res.ok) throw new Error()
                 //localStorage.setItem("", res.arrayBuffer);
                 sessionStorage.removeItem('code_verifier')
+                 login({ nome: 'usuario' })  
                 navigate('/')
             })
             
