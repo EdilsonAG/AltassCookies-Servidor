@@ -52,9 +52,17 @@ export default function Carrinho() {
             {itens.map(item => (
               <div key={item.id} className="cart-item">
                 <div className="cart-item__img-wrap">
-                  {item.produto.produtoImagemResponses?.[0]?.url ? (
-                    <img src={item.produto.produtoImagemResponses[0].url} alt={item.produto.nome} />
-                  ) : (
+                  {
+
+                  // item.produto.produtoImagemResponses?.[0]?.url ? (
+                  //   <img src={item.produto.produtoImagemResponses[0].url} alt={item.produto.nome} />
+                  // ) 
+
+                  item.produto.url ? (
+                    <img src={item.produto.url}/>
+                  )
+                  
+                  : (
                     <div className="cart-item__no-img">🍪</div>
                   )}
                 </div>

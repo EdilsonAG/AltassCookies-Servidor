@@ -76,7 +76,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }
   const itens = carrinho?.itemCarrinho ?? []
-  const totalItens = itens.reduce((acc, item) => acc + item.quantidade, 0)
+   const totalItens = itens.reduce((acc, item) => acc + item.quantidade, 0)
   const totalPreco = itens.reduce(
     (acc, item) => acc + (item.produto.preco ?? 0) * item.quantidade,
     0

@@ -13,7 +13,8 @@ export default function ProdutoCard({ produto }: Props) {
   const [adding, setAdding] = useState(false)
   const [added, setAdded] = useState(false)
 
-  const imagem = produto.produtoImagemResponses?.[0]?.url
+  //const imagem = produto.produtoImagemResponses?.[0]?.url
+  const imagem = produto.url;
 
   async function handleAddToCart() {
     setAdding(true)
