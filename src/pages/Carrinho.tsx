@@ -51,20 +51,36 @@ export default function Carrinho() {
             ))} */}
             {itens.map(item => (
               <div key={item.id} className="cart-item">
+                {/* <div>
+                   {item.produto.produtoImagemResponses.map(imagem => (
+                    <img src={imagem.url} alt="" />
+                  ))}
+                </div> */}
                 <div className="cart-item__img-wrap">
                   {
 
                   // item.produto.produtoImagemResponses?.[0]?.url ? (
                   //   <img src={item.produto.produtoImagemResponses[0].url} alt={item.produto.nome} />
                   // ) 
-
-                  item.produto.url ? (
-                    <img src={item.produto.url}/>
-                  )
                   
-                  : (
-                    <div className="cart-item__no-img">🍪</div>
-                  )}
+                  item.produto.produtoImagemResponses.map(image =>
+                    <img src={image.url} alt="" />
+                  )
+
+                  //item.produto.produtoImagemResponses ? ():()
+                  
+                  // item.produto.url ? (
+                    
+                  //   <img src={item.produto.url}/>
+                    
+                  // )
+                  
+                  // : (
+                     
+                  //    <div className="cart-item__no-img">🍪</div>
+                   
+                  // )
+                  }
                 </div>
 
                 <div className="cart-item__info">
@@ -94,6 +110,7 @@ export default function Carrinho() {
                 </div>
 
                 <p className="cart-item__subtotal">
+                 
                   {((item.produto.preco ?? 0) * item.quantidade).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
