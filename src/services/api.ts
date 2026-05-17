@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:8080'
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
     ...options,
-    credentials: 'include', // ✅ cookie vai automaticamente — sem token manual
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,
@@ -19,7 +19,8 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   if (!res.ok) throw new Error(`Erro ${res.status}`)
   if (res.status === 204 || res.headers.get('content-length') === '0') {
     return undefined as T
-  } return res.json()
+  } 
+  return res.json()
 
   const text = await res.text()
   return (text ? JSON.parse(text) : undefined) as T

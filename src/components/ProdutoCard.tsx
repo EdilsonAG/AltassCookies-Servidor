@@ -14,7 +14,13 @@ export default function ProdutoCard({ produto }: Props) {
   const [added, setAdded] = useState(false)
 
   //const imagem = produto.produtoImagemResponses?.[0]?.url
-  const imagem = produto.url;
+  const imagem = produto.produtoImagemResponses;
+
+   {produto.produtoImagemResponses.map(imagem => {
+          <div key={imagem.id}>
+            <img src={imagem.url} alt="" />
+          </div>
+        })}
 
   async function handleAddToCart() {
     setAdding(true)
@@ -29,9 +35,18 @@ export default function ProdutoCard({ produto }: Props) {
 
   return (
     <article className="produto-card">
+      {/* <div>
+       {produto.produtoImagemResponses.map(imagem => <div>{
+          <div key={imagem.id}>
+            <img src={imagem.url} alt="" />
+          </div>
+        }</div>)}
+      </div> */}
       <div className="produto-card__img-wrap">
+        
+        <div></div>
         {imagem ? (
-          <img src={imagem} alt={produto.nome} className="produto-card__img" />
+          <img src={produto.url} alt={produto.url} className="produto-card__img" />
         ) : (
           <div className="produto-card__no-img">
             <ImageOff size={32} />
@@ -39,6 +54,9 @@ export default function ProdutoCard({ produto }: Props) {
         )}
         <div className="produto-card__badge">Gourmet</div>
       </div>
+
+      
+      
 
       <div className="produto-card__body">
         <h3 className="produto-card__nome">{produto.nome}</h3>

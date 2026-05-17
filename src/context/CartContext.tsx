@@ -30,8 +30,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCarrinho(data)
 
     } catch {
-      // Carrinho vazio ou usuário não logado
-      setCarrinho(null)
+       setCarrinho(null)
     } finally {
       setLoading(false)
     }
