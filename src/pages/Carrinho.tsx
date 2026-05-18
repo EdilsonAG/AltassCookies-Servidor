@@ -9,7 +9,7 @@ export default function Carrinho() {
 
   if (loading) return <div className="cart-loading">Carregando carrinho...</div>
 
-
+  
 
 
   if (itens.length === 0) {
@@ -62,11 +62,17 @@ export default function Carrinho() {
                   // item.produto.produtoImagemResponses?.[0]?.url ? (
                   //   <img src={item.produto.produtoImagemResponses[0].url} alt={item.produto.nome} />
                   // ) 
-                  
-                  item.produto.produtoImagemResponses.map(image =>
-                    <img src={image.url} alt="" />
-                  )
+                  // <div>asdf</div>
 
+                  item.produto.produtoImagemResponses ? (
+                    
+                  item.produto.produtoImagemResponses.map(image =>
+                    <img key={image.id} src={image.url} alt="" />
+                     
+                  )
+                ) : (
+                  <div className="cart-item__no-img">🍪</div>
+                )
                   //item.produto.produtoImagemResponses ? ():()
                   
                   // item.produto.url ? (

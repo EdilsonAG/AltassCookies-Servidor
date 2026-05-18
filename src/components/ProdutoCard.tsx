@@ -35,24 +35,23 @@ export default function ProdutoCard({ produto }: Props) {
 
   return (
     <article className="produto-card">
-      {/* <div>
-       {produto.produtoImagemResponses.map(imagem => <div>{
-          <div key={imagem.id}>
-            <img src={imagem.url} alt="" />
-          </div>
-        }</div>)}
-      </div> */}
+      
       <div className="produto-card__img-wrap">
-        
-        <div></div>
+       
+      
         {imagem ? (
-          <img src={produto.url} alt={produto.url} className="produto-card__img" />
+          <div>
+            {imagem.map(img =>  
+              <img src={img.url} alt={produto.url} className="produto-card__img" />
+              )}
+          </div>
         ) : (
           <div className="produto-card__no-img">
             <ImageOff size={32} />
           </div>
         )}
         <div className="produto-card__badge">Gourmet</div>
+
       </div>
 
       
