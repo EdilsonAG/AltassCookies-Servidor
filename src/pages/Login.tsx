@@ -225,7 +225,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Auth.css'
-import { useAuth } from '../context/AuthContext'
+//import { useAuth } from '../context/AuthContext'
 
 
 
@@ -256,7 +256,8 @@ export default function Login() {
     setLoading(true)
 
     try {
-       const res = await fetch('http://localhost:8080/auth/login', {
+      // http://localhost:8080/auth/login
+       const res = await fetch('https://api.bytefire.com.br/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },  
@@ -272,8 +273,17 @@ export default function Login() {
         const challenge = await generateCodeChallenge(verifier)
 
          // Spring já sabe que está logado pelo cookie de sessão
+
+        //  window.location.href =
+        //   `http://localhost:8080/oauth2/authorize` +
+        //   `?response_type=code&client_id=web` +
+        //   `&redirect_uri=http://localhost:5173/AltassCookies/callback` +
+        //   `&scope=write` +
+        //   `&code_challenge=${challenge}` +
+         // `&code_challenge_method=S256`
+
         window.location.href =
-          `http://localhost:8080/oauth2/authorize` +
+          `https://api.bytefire.com.br/oauth2/authorize` +
           `?response_type=code&client_id=web` +
           `&redirect_uri=http://localhost:5173/AltassCookies/callback` +
           `&scope=write` +

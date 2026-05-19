@@ -18,7 +18,8 @@ export default function Callback() {
         const code = params.get('code')
         const codeVerifier = sessionStorage.getItem('code_verifier')
 
-         fetch('http://localhost:8080/auth/callback', {
+        // http://localhost:8080/auth/callback
+         fetch('https://api.bytefire.com.br/auth/callback', {
             method: 'POST',
             credentials: 'include',   
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
