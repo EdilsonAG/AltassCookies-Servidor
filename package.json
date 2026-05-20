@@ -1,6 +1,7 @@
 {
   "name": "altass-cookies",
   "private": true,
+  "homepage": "https://github.com/EdilsonAG/AltassCookies",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
