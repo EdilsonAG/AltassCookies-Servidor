@@ -16,7 +16,7 @@ import { AuthProvider } from './context/AuthContext'
 
 export default function App() {
   return (
-<BrowserRouter basename="/AltassCookies">
+<BrowserRouter>
       <AuthProvider >
         <CartProvider>
           <Navbar />
