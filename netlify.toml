@@ -1,11 +1,30 @@
 # exemplo deu um netlify.toml
+#[build]
+ # command = "vite build"
+  #functions = "netlify/functions"
+ # publish = "dist"
+
+# Redirecionamento de todas as rotas para /index.html
+#[[redirects]]
+ # from = "/*"
+ # to = "/index.html"
+ # status = 200
+
+
+
 [build]
   command = "vite build"
   functions = "netlify/functions"
   publish = "dist"
 
-# Redirecionamento de todas as rotas para /index.html
+# Acessar a raiz manda pro /AltassCookies/
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/"
+  to = "/AltassCookies/"
+  status = 302
+
+# SPA fallback: qualquer rota dentro de /AltassCookies/* serve o index.html
+[[redirects]]
+  from = "/AltassCookies/*"
+  to = "/AltassCookies/index.html"
   status = 200
