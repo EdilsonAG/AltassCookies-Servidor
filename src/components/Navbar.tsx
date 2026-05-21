@@ -10,7 +10,7 @@ export default function Navbar() {
   const { totalItens } = useCart()
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
-  const { user } = useAuth()
+  const { user, logado } = useAuth()
 
   const links = [
     { label: 'Início', to: '/' },
@@ -51,7 +51,7 @@ export default function Navbar() {
           </Link>
 
           {/* substitui o <Link to="/login" ...> */}
-          {!user && (
+          {!user && !logado && (
             <Link to="/login" className="btn-outline navbar__btn-login desktop-only">
               Entrar
             </Link>
