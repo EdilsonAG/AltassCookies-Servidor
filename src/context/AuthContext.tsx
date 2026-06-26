@@ -7,13 +7,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState(null)
   const [logado, setLogado] = useState(false)
 
-  useEffect(() => {
-    if (user != null) {
-      setLogado(true)
-    }
-  }, [])
   
-  const login = (userData: any) => setUser(userData)
+   useEffect(()=>{
+    if(user != null){
+      localStorage.setItem("logado", user)
+    }
+   })
+  
+  const login = (userData: any) => {setUser(userData), setLogado(true)}
   const logout = () => setUser(null)
 
   return (

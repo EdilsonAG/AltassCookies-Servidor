@@ -3,7 +3,7 @@ import type {
   PagamentoRequest, PagamentoResponse, Cliente, ClienteResponse,
 } from '../types'
 
-const BASE_URL = 'https://api.bytefire.com.br'
+const BASE_URL = 'https://oracle.bytefire.com.br'
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
