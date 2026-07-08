@@ -12,6 +12,7 @@ export default function Callback() {
 
 
      useEffect(() => {
+        console.log("CHEGOU AQUI")
         if (executado.current) return
         executado.current = true
         const params = new URLSearchParams(window.location.search)
@@ -19,7 +20,7 @@ export default function Callback() {
         const codeVerifier = sessionStorage.getItem('code_verifier')
 
         // http://localhost:8080/auth/callback
-         fetch('https://api.bytefire.com.br/auth/callback', {
+         fetch('https://oracle.bytefire.com.br/auth/callback', {
             method: 'POST',
             credentials: 'include',   
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

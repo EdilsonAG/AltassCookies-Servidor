@@ -224,6 +224,7 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { clienteService } from '../services/api'
 import './Auth.css'
 //import { useAuth } from '../context/AuthContext'
 
@@ -255,17 +256,20 @@ export default function Login() {
     setErro('')
     setLoading(true)
 
-    try {
-      // http://localhost:8080/auth/login
-       const res = await fetch('https://api.bytefire.com.br/auth/login', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },  
-        body: JSON.stringify({ email: email, password: password }),
-        redirect: 'manual', // n segue o redirect do Spring
-      })
 
-       if (res.ok) {
+    try {
+       await clienteService.login(email,password)
+      // http://localhost:8080/auth/login
+      //  const res = await fetch('https://api.bytefire.com.br/auth/login', {
+      
+      //   method: 'POST',
+      //   credentials: 'include',
+      //   headers: { 'Content-Type': 'application/json' },  
+      //   body: JSON.stringify({ email: email, password: password }),
+      // //  redirect: 'manual', // n segue o redirect do Spring
+      // })
+
+      // if (res) {
         //login({nome: "asdf"})
         
          const verifier = generateCodeVerifier()
@@ -283,15 +287,15 @@ export default function Login() {
          // `&code_challenge_method=S256`
 
         window.location.href =
-          `https://api.bytefire.com.br/oauth2/authorize` +
+          `https://oracle.bytefire.com.br/oauth2/authorize` +
           `?response_type=code&client_id=web` +
-          `&redirect_uri=https://altasscookies.netlify.app/callback` +
+          `&redirect_uri=http://localhost:5173/callback` +
           `&scope=write` +
           `&code_challenge=${challenge}` +
           `&code_challenge_method=S256`
-      } else {
-        setErro('Email ou senha incorretos')
-      }
+     // } else {
+     //   setErro('Email ou senha incorretos')
+     // }
     } catch {
       setErro('Erro ao conectar com o servidor')
     } finally {

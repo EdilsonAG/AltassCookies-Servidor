@@ -1,6 +1,7 @@
 import type {
   Produto, CarrinhoResponse, PedidoResponse,
   PagamentoRequest, PagamentoResponse, Cliente, ClienteResponse,
+  ClienteCadastro,
 } from '../types'
 
 const BASE_URL = 'https://oracle.bytefire.com.br'
@@ -86,8 +87,8 @@ export const pagamentoService = {
 
 // Cliente
 export const clienteService = {
-  cadastrar: (body: Cliente) =>
-    request<ClienteResponse>('/cliente', { method: 'POST', body: JSON.stringify(body) }),
+  cadastrar: (body: ClienteCadastro) =>
+    request<ClienteResponse>('/auth/register', { method: 'POST', body: JSON.stringify(body) }),
 
   deletar: () => request<void>('/cliente', { method: 'DELETE' }),
 
@@ -97,10 +98,10 @@ export const clienteService = {
       body: JSON.stringify(campos),
     }),
 
-  login: (email: string, senha: string) =>
-    request<void>('/login', {
+   login: (email: string, password: string) =>
+    request<void>('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email, senha }),
+      body: JSON.stringify({ email, password }),
     }),
 
   logout: () => request<void>('/logout', { method: 'POST' }),

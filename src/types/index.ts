@@ -20,6 +20,13 @@ export interface Cliente {
   tipoNotificacao: string
 }
 
+export interface ClienteCadastro {
+  name: string
+  email: string
+  pass: string
+ }
+
+
 export interface ClienteResponse {
   nome: string
   email: string

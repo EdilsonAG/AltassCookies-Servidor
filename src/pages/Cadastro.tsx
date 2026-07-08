@@ -4,7 +4,7 @@ import { clienteService } from '../services/api'
 import './Auth.css'
 
 export default function Cadastro() {
-  const [form, setForm] = useState({ nome: '', email: '', senha: '', tipoNotificacao: 'EMAIL' })
+  const [form, setForm] = useState({ name: '', email: '', pass: ''})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -50,7 +50,7 @@ export default function Cadastro() {
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-form__field">
             <label htmlFor="nome">Nome completo</label>
-            <input id="nome" name="nome" type="text" placeholder="Seu nome" value={form.nome} onChange={handleChange} required />
+            <input id="nome" name="nome" type="text" placeholder="Seu nome" value={form.name} onChange={handleChange} required />
           </div>
           <div className="auth-form__field">
             <label htmlFor="email">E-mail</label>
@@ -58,16 +58,16 @@ export default function Cadastro() {
           </div>
           <div className="auth-form__field">
             <label htmlFor="senha">Senha</label>
-            <input id="senha" name="senha" type="password" placeholder="Mínimo 8 caracteres" value={form.senha} onChange={handleChange} required minLength={8} />
+            <input id="senha" name="senha" type="password" placeholder="Mínimo 8 caracteres" value={form.pass} onChange={handleChange} required minLength={8} />
           </div>
-          <div className="auth-form__field">
+          {/* <div className="auth-form__field">
             <label htmlFor="tipoNotificacao">Notificações por</label>
             <select id="tipoNotificacao" name="tipoNotificacao" value={form.tipoNotificacao} onChange={handleChange}>
               <option value="EMAIL">E-mail</option>
               <option value="SMS">SMS</option>
               <option value="NENHUM">Nenhum</option>
             </select>
-          </div>
+          </div> */}
           <button type="submit" className="btn-primary auth-btn" disabled={loading}>
             {loading ? 'Criando conta...' : 'Criar conta'}
           </button>
