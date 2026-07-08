@@ -30,7 +30,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
 // Produtos
 export const produtoService = {
-  listar: () => request<ProdutoServidor[]>('/produto'),
+  listar: () => request<ProdutoServidor[]>('/produto/all'),
 
   // FormData não usa Content-Type: application/json, por isso fetch separado
   criar: (formData: FormData) =>
