@@ -16,6 +16,8 @@ export interface ProdutoServidor {
   id: number
   nome: string
   descricao: string | null
+  preco: number | null
+  url: string 
   
 }
 

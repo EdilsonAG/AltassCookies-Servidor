@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Star, Truck, ShieldCheck, Cookie } from 'lucide-react'
 import { produtoService } from '../services/api'
-import type { Produto } from '../types'
+import type { Produto, ProdutoServidor } from '../types'
 import ProdutoCard from '../components/ProdutoCard'
 import './Home.css'
 import { useCart } from '../context/CartContext'
 
 export default function Home() {
   const {recarregar} = useCart();
-  const [produtos, setProdutos] = useState<Produto[]>([])
+  const [produtos, setProdutos] = useState<ProdutoServidor[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

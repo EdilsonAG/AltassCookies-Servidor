@@ -13,7 +13,7 @@ export default function ProdutoCard({ produto }: Props) {
   const [adding, setAdding] = useState(false)
   const [added, setAdded] = useState(false)
 
-  //const imagem = produto.produtoImagemResponses?.[0]?.url
+  // const imagem = produto.produtoImagemResponses?.[0]?.url
   // const imagem = produto.produtoImagemResponses;
 
   //  {produto.produtoImagemResponses.map(imagem => {
@@ -21,6 +21,8 @@ export default function ProdutoCard({ produto }: Props) {
   //           <img src={imagem.url} alt="" />
   //         </div>
   //       })}
+
+  const imagem = "https://oracle.bytefire.com.br/produto/fotos/"+produto.url
 
   async function handleAddToCart() {
     setAdding(true)
@@ -38,8 +40,9 @@ export default function ProdutoCard({ produto }: Props) {
       
       <div className="produto-card__img-wrap">
        
-      
-        {/* {imagem ? (
+    <img src={imagem} alt="" />
+{/*       
+        {imagem ? (
           <div>
             {imagem.map(img =>  
               <img src={img.url} alt={produto.url} className="produto-card__img" />

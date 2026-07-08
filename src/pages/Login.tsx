@@ -289,7 +289,7 @@ export default function Login() {
         window.location.href =
           `https://oracle.bytefire.com.br/oauth2/authorize` +
           `?response_type=code&client_id=web` +
-          `&redirect_uri=http://localhost:5173/callback` +
+          `&redirect_uri=https://altasscookie.netlify.app/callback` +
           `&scope=write` +
           `&code_challenge=${challenge}` +
           `&code_challenge_method=S256`
