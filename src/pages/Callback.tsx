@@ -37,7 +37,7 @@ export default function Callback() {
                 navigate('/')
             })
             
-            .catch(() => navigate('/login'))  
+            .catch(() => navigate('/'))  
     }, [navigate])
 
     return <p style={{ padding: '2rem' }}>Autenticando...</p>

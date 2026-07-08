@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom'
 import { clienteService } from '../services/api'
 import './Auth.css'
 
+import type {
+  ClienteCadastro
+} from '../types'
+
 export default function Cadastro() {
-  const [form, setForm] = useState({ name: '', email: '', pass: ''})
+  const [form, setForm] = useState({ nome: '', email: '', senha: ''})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -12,11 +16,23 @@ export default function Cadastro() {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   }
 
+   function toClienteCadastro(forme: typeof form): ClienteCadastro {
+  return {
+    name: forme.nome,
+    email: forme.email,
+    pass: forme.senha
+  }
+}
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     try {
-      await clienteService.cadastrar(form)
+
+      const cliente = toClienteCadastro(form);
+     
+
+      await clienteService.cadastrar(cliente)
       setSuccess(true)
     } catch {
       alert('Erro ao cadastrar. Tente novamente.')
@@ -50,7 +66,7 @@ export default function Cadastro() {
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-form__field">
             <label htmlFor="nome">Nome completo</label>
-            <input id="nome" name="nome" type="text" placeholder="Seu nome" value={form.name} onChange={handleChange} required />
+            <input id="nome" name="nome" type="text" placeholder="Seu nome" value={form.nome} onChange={handleChange} required />
           </div>
           <div className="auth-form__field">
             <label htmlFor="email">E-mail</label>
@@ -58,7 +74,7 @@ export default function Cadastro() {
           </div>
           <div className="auth-form__field">
             <label htmlFor="senha">Senha</label>
-            <input id="senha" name="senha" type="password" placeholder="Mínimo 8 caracteres" value={form.pass} onChange={handleChange} required minLength={8} />
+            <input id="senha" name="senha" type="password" placeholder="Mínimo 8 caracteres" value={form.senha} onChange={handleChange} required minLength={8} />
           </div>
           {/* <div className="auth-form__field">
             <label htmlFor="tipoNotificacao">Notificações por</label>

@@ -12,6 +12,13 @@ export interface Produto {
   produtoImagemResponses: ProdutoImagemResponse[]
 }
 
+export interface ProdutoServidor {
+  id: number
+  nome: string
+  descricao: string | null
+  
+}
+
 //  Cliente 
 export interface Cliente {
   nome: string

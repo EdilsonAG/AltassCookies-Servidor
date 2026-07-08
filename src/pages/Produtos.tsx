@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 import { produtoService } from '../services/api'
-import type { Produto } from '../types'
+import type { ProdutoServidor } from '../types'
 import ProdutoCard from '../components/ProdutoCard'
 import './Produtos.css'
 
 export default function Produtos() {
-  const [todos, setTodos] = useState<Produto[]>([])
-  const [filtrado, setFiltrado] = useState<Produto[]>([])
+  const [todos, setTodos] = useState<ProdutoServidor[]>([])
+  const [filtrado, setFiltrado] = useState<ProdutoServidor[]>([])
   const [busca, setBusca] = useState('')
   const [loading, setLoading] = useState(true)
 

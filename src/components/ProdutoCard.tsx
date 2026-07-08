@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { ShoppingCart, ImageOff } from 'lucide-react'
-import type { Produto } from '../types'
+import type { Produto, ProdutoServidor } from '../types'
 import { useCart } from '../context/CartContext'
 import './ProdutoCard.css'
 
 interface Props {
-  produto: Produto
+  produto: ProdutoServidor
 }
 
 export default function ProdutoCard({ produto }: Props) {
@@ -14,13 +14,13 @@ export default function ProdutoCard({ produto }: Props) {
   const [added, setAdded] = useState(false)
 
   //const imagem = produto.produtoImagemResponses?.[0]?.url
-  const imagem = produto.produtoImagemResponses;
+  // const imagem = produto.produtoImagemResponses;
 
-   {produto.produtoImagemResponses.map(imagem => {
-          <div key={imagem.id}>
-            <img src={imagem.url} alt="" />
-          </div>
-        })}
+  //  {produto.produtoImagemResponses.map(imagem => {
+  //         <div key={imagem.id}>
+  //           <img src={imagem.url} alt="" />
+  //         </div>
+  //       })}
 
   async function handleAddToCart() {
     setAdding(true)
@@ -39,7 +39,7 @@ export default function ProdutoCard({ produto }: Props) {
       <div className="produto-card__img-wrap">
        
       
-        {imagem ? (
+        {/* {imagem ? (
           <div>
             {imagem.map(img =>  
               <img src={img.url} alt={produto.url} className="produto-card__img" />
@@ -49,7 +49,7 @@ export default function ProdutoCard({ produto }: Props) {
           <div className="produto-card__no-img">
             <ImageOff size={32} />
           </div>
-        )}
+        )} */}
         <div className="produto-card__badge">Gourmet</div>
 
       </div>
@@ -59,11 +59,11 @@ export default function ProdutoCard({ produto }: Props) {
 
       <div className="produto-card__body">
         <h3 className="produto-card__nome">{produto.nome}</h3>
-        <p className="produto-card__preco">
+        {/* <p className="produto-card__preco">
           {produto.preco != null
             ? produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
             : 'Sob consulta'}
-        </p>
+        </p> */}
       </div>
 
       <button
