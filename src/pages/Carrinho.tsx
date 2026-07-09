@@ -50,12 +50,13 @@ export default function Carrinho() {
               </div>
             ))} */}
             {itens.map(item => (
-              <div key={item.id} className="cart-item">
-                {/* <div>
-                   {item.produto.produtoImagemResponses.map(imagem => (
+              <div key={item._produto.id} className="cart-item">
+                <div>
+                   {/* {item._produto.url.map(imagem => (
                     <img src={imagem.url} alt="" />
-                  ))}
-                </div> */}
+                  ))} */}
+                  <img src={item._produto.url} alt="" />
+                </div>
                 <div className="cart-item__img-wrap">
                   {
 
@@ -64,12 +65,14 @@ export default function Carrinho() {
                   // ) 
                   // <div>asdf</div>
 
-                  item.produto.produtoImagemResponses ? (
-                    
-                  item.produto.produtoImagemResponses.map(image =>
-                    <img key={image.id} src={image.url} alt="" />
+                  item._produto.url ? (
+                    <div>
+                      <img src={item._produto.url} alt="" />
+                    </div>
+                  // item.produto.produtoImagemResponses.map(image =>
+                  //   <img key={image.id} src={image.url} alt="" />
                      
-                  )
+                  // )
                 ) : (
                   <div className="cart-item__no-img">🍪</div>
                 )
@@ -90,13 +93,13 @@ export default function Carrinho() {
                 </div>
 
                 <div className="cart-item__info">
-                  <h3>{item.produto.nome}</h3>
+                  <h3>{item._produto.nome}</h3>
                   <p className="cart-item__preco">
-                    {(item.produto.preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    {(item._produto.preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </p>
                 </div>
 
-                <div className="cart-item__qty">
+                {/* <div className="cart-item__qty">
                   <button
                     type="button"
                     onClick={() => editarQuantidade(item.id, item.quantidade - 1)}
@@ -113,11 +116,11 @@ export default function Carrinho() {
                   >
                     <Plus size={14} />
                   </button>
-                </div>
+                </div> */}
 
                 <p className="cart-item__subtotal">
                  
-                  {((item.produto.preco ?? 0) * item.quantidade).toLocaleString('pt-BR', {
+                  {((item._produto.preco ?? 0) * item._quantidade).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
                   })}
@@ -125,7 +128,7 @@ export default function Carrinho() {
 
                 <button
                   className="cart-item__remove"
-                  onClick={() => removerItem(item.produto.id)}
+                  onClick={() => removerItem(item._produto.id)}
                   aria-label="Remover"
                 >
                   <Trash2 size={18} />

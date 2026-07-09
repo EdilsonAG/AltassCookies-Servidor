@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import type { ReactNode } from 'react'
-import type { CarrinhoResponse, ItemCarrinhoResponse } from '../types'
+import type { CarrinhoResponse, CarrinhoResponseServidor, ItemCarrinhoResponse, ItemCarrinhoResponseServidor } from '../types'
 import { carrinhoService } from '../services/api'
 import { useAuth } from './AuthContext'
 
 interface CartContextValue {
-  carrinho: CarrinhoResponse | null
-  itens: ItemCarrinhoResponse[]
+  carrinho: CarrinhoResponseServidor | null
+  itens: ItemCarrinhoResponseServidor[]
   totalItens: number
   totalPreco: number
   loading: boolean
@@ -19,7 +19,7 @@ interface CartContextValue {
 const CartContext = createContext<CartContextValue | null>(null)
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [carrinho, setCarrinho] = useState<CarrinhoResponse | null>(null)
+  const [carrinho, setCarrinho] = useState<CarrinhoResponseServidor | null>(null)
   const [loading, setLoading] = useState(false)
   const { user } = useAuth();
 
@@ -59,8 +59,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (!prev) return prev
       return {
         ...prev,
-        itemCarrinho: prev.itemCarrinho.map(item =>
-          item.id === idItemCarrinho
+        itemCarrinho: prev.itensCarrinho.map(item =>
+          item._produto.id === idItemCarrinho
             ? { ...item, quantidade }
             : item
         ),
@@ -74,10 +74,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       console.error('Falha ao editar quantidade:', err)
     }
   }
-  const itens = carrinho?.itemCarrinho ?? []
-   const totalItens = itens.reduce((acc, item) => acc + item.quantidade, 0)
+
+  //if(carrinho[0] === null){}
+  const itens = carrinho?.itensCarrinho ?? []
+   const totalItens = itens.reduce((acc, item) => acc + item._quantidade, 0)
   const totalPreco = itens.reduce(
-    (acc, item) => acc + (item.produto.preco ?? 0) * item.quantidade,
+    (acc, item) => acc + (item._produto.preco ?? 0) * item._quantidade,
     0
   )
 

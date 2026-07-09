@@ -3,6 +3,7 @@ import type {
   PagamentoRequest, PagamentoResponse, Cliente, ClienteResponse,
   ClienteCadastro,
   ProdutoServidor,
+  CarrinhoResponseServidor,
 } from '../types'
 
 const BASE_URL = 'https://oracle.bytefire.com.br'
@@ -50,10 +51,21 @@ export const produtoService = {
 
 // Carrinho
 export const carrinhoService = {
-  buscar: () => request<CarrinhoResponse>('/carrinho'),
+  // buscar: () => request<CarrinhoResponseServidor>('/carrinho',{
+  //   headers: {
+  //   'Accept': 'application/json;odata.metadata=none',
+  // },
 
-  adicionar: (id: number, quantidade: number) =>
-    request<void>(`/carrinho?id=${id}&quantidade=${quantidade}`, { method: 'POST' }),
+  // }),
+  buscar: () =>
+    request<{ value: CarrinhoResponseServidor[] }>('/carrinho')
+      .then(res => res.value[0] ?? null),
+
+  adicionar: (idProduto: number, quantidade: number) =>
+    request<void>(`/carrinho/add`,{
+      method: 'POST',
+      body: JSON.stringify({ idProduto, quantidade }),
+    }),
 
   remover: (idProduto: number) =>
     request<void>(`/carrinho?idProduto=${idProduto}`, { method: 'DELETE' }),
