@@ -228,7 +228,7 @@ import { clienteService } from '../services/api'
 import './Auth.css'
 //import { useAuth } from '../context/AuthContext'
 
-
+const url = import.meta.env.VITE_API_URL;
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -289,7 +289,7 @@ export default function Login() {
         window.location.href =
           `https://oracle.bytefire.com.br/oauth2/authorize` +
           `?response_type=code&client_id=web` +
-          `&redirect_uri=https://altasscookies.netlify.app` +
+          `&redirect_uri=${url}` +
           `&scope=write` +
           `&code_challenge=${challenge}` +
           `&code_challenge_method=S256`
