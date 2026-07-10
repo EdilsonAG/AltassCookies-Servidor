@@ -12,6 +12,7 @@ export default function Produtos() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL)
     produtoService.listar()
       .then(data => { setTodos(data); setFiltrado(data) })
       .catch(() => { setTodos([]); setFiltrado([]) })
