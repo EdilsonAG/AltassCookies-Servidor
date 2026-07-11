@@ -222,6 +222,11 @@
 
 
 
+
+
+// VERSÃO 3
+
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { clienteService } from '../services/api'
@@ -289,7 +294,7 @@ export default function Login() {
         window.location.href =
           `https://oracle.bytefire.com.br/oauth2/authorize` +
           `?response_type=code&client_id=web` +
-          `&redirect_uri=${url}` +
+          `&redirect_uri=https://altasscookie.netlify.app/callback` +
           `&scope=write` +
           `&code_challenge=${challenge}` +
           `&code_challenge_method=S256`
@@ -347,3 +352,76 @@ export default function Login() {
     </main>
   )
 }
+
+// import { useRef, useState } from 'react'
+// import { Link } from 'react-router-dom'
+// import './Auth.css'
+
+// const url = import.meta.env.VITE_API_URL
+
+// function generateCodeVerifier(): string {
+//   const array = new Uint8Array(32)
+//   crypto.getRandomValues(array)
+//   return btoa(String.fromCharCode(...array))
+//     .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+// }
+
+// async function generateCodeChallenge(verifier: string): Promise<string> {
+//   const data = new TextEncoder().encode(verifier)
+//   const hash = await crypto.subtle.digest('SHA-256', data)
+//   return btoa(String.fromCharCode(...new Uint8Array(hash)))
+//     .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+// }
+
+// export default function Login() {
+//   const [email, setEmail] = useState('')
+//   const [password, setSenha] = useState('')
+//   const [loading, setLoading] = useState(false)
+//   const formRef = useRef<HTMLFormElement>(null)
+//   const challengeRef = useRef<HTMLInputElement>(null)
+
+//   async function handleLogin(e: React.FormEvent) {
+//     e.preventDefault()
+//     setLoading(true)
+
+//     const verifier = generateCodeVerifier()
+//     sessionStorage.setItem('code_verifier', verifier)
+//     const challenge = await generateCodeChallenge(verifier)
+
+//     challengeRef.current!.value = challenge
+//     formRef.current!.submit() // navegação real, não fetch
+//   }
+
+//   return (
+//     <main className="auth-page">
+//       <div className="auth-card">
+//         <div className="auth-card__logo">🍪</div>
+//         <h1>Bem-vindo de volta!</h1>
+//         <p className="auth-card__sub">Entre na sua conta para continuar</p>
+
+//         <form ref={formRef} action={`${url}/auth/login`} method="POST" onSubmit={handleLogin} className="auth-form">
+//           <input type="hidden" name="redirect_uri" value={`${window.location.origin}/callback`} />
+//           <input type="hidden" name="code_challenge" ref={challengeRef} />
+
+//           <div className="auth-form__field">
+//             <label htmlFor="email">E-mail</label>
+//             <input id="email" name="email" type="email" placeholder="seu@email.com"
+//               value={email} onChange={e => setEmail(e.target.value)} required />
+//           </div>
+//           <div className="auth-form__field">
+//             <label htmlFor="senha">Senha</label>
+//             <input id="senha" name="password" type="password" placeholder="••••••••"
+//               value={password} onChange={e => setSenha(e.target.value)} required />
+//           </div>
+//           <button type="submit" className="btn-primary auth-btn" disabled={loading}>
+//             {loading ? 'Entrando...' : 'Entrar'}
+//           </button>
+//         </form>
+
+//         <p className="auth-card__footer">
+//           Não tem conta? <Link to="/cadastro">Criar conta</Link>
+//         </p>
+//       </div>
+//     </main>
+//   )
+// }
