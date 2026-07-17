@@ -6,6 +6,9 @@ import './Carrinho.css'
 export default function Carrinho() {
   const { itens, totalPreco, removerItem, editarQuantidade, loading } = useCart()
 
+  console.log(itens.map(item =>{
+    item._produto.nome
+  }))
 
   if (loading) return <div className="cart-loading">Carregando carrinho...</div>
 
@@ -58,6 +61,7 @@ export default function Carrinho() {
                   <img src={item._produto.url} alt="" />
                 </div>
                 <div className="cart-item__img-wrap">
+                         <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto.url} alt="" />
                   {
 
                   // item.produto.produtoImagemResponses?.[0]?.url ? (
@@ -66,15 +70,15 @@ export default function Carrinho() {
                   // <div>asdf</div>
 
                   item._produto.url ? (
-                    <div>
-                      <img src={item._produto.url} alt="" />
-                    </div>
+            
+                      <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto.url} alt="" />
+                    
                   // item.produto.produtoImagemResponses.map(image =>
                   //   <img key={image.id} src={image.url} alt="" />
-                     
+                      
                   // )
                 ) : (
-                  <div className="cart-item__no-img">🍪</div>
+                  <div className="cart-item__no-img">🍪 </div>
                 )
                   //item.produto.produtoImagemResponses ? ():()
                   
