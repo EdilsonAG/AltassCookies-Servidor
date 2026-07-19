@@ -53,7 +53,7 @@ export default function Carrinho() {
               </div>
             ))} */}
             {itens.map(item => (
-              <div key={item._produto.id} className="cart-item">
+              <div key={item._produto._id} className="cart-item">
                 <div>
                    {/* {item._produto.url.map(imagem => (
                     <img src={imagem.url} alt="" />
@@ -61,7 +61,7 @@ export default function Carrinho() {
                   <img src={item._produto.url} alt="" />
                 </div>
                 <div className="cart-item__img-wrap">
-                         <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto.url} alt="" />
+                         <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto._url} alt="" />
                   {
 
                   // item.produto.produtoImagemResponses?.[0]?.url ? (
@@ -99,7 +99,7 @@ export default function Carrinho() {
                 <div className="cart-item__info">
                   <h3>{item._produto.nome}</h3>
                   <p className="cart-item__preco">
-                    {(item._produto.preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    {(item._produto._preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </p>
                 </div>
 
@@ -124,7 +124,7 @@ export default function Carrinho() {
 
                 <p className="cart-item__subtotal">
                  
-                  {((item._produto.preco ?? 0) * item._quantidade).toLocaleString('pt-BR', {
+                  {((item._produto._preco ?? 0) * item._quantidade).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
                   })}
@@ -132,7 +132,7 @@ export default function Carrinho() {
 
                 <button
                   className="cart-item__remove"
-                  onClick={() => removerItem(item._produto.id)}
+                  onClick={() => removerItem(item._produto._id)}
                   aria-label="Remover"
                 >
                   <Trash2 size={18} />

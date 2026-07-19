@@ -20,7 +20,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   )
 
   if (!res.ok) throw new Error(`Erro ${res.status}`)
-  if (res.status === 204 || res.headers.get('content-length') === '0') {
+  if (res.status === 204 ||res.headers.get('content-length') === '0') {
     return undefined as T
   } 
   return res.json()

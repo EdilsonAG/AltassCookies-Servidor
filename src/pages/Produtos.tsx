@@ -56,7 +56,7 @@ export default function Produtos() {
           </div>
         ) : (
           <div className="produtos-grid">
-            {filtrado.map(p => <ProdutoCard key={p.id} produto={p} />)}
+            {filtrado.map(p => <ProdutoCard key={p._id} produto={p} />)}
           </div>
         )}
       </div>
