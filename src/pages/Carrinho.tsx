@@ -103,10 +103,10 @@ export default function Carrinho() {
                   </p>
                 </div>
 
-                {/* <div className="cart-item__qty">
+                <div className="cart-item__qty">
                   <button
                     type="button"
-                    onClick={() => editarQuantidade(item.id, item.quantidade - 1)}
+                    onClick={() => editarQuantidade(item.produto.id, item.quantidade - 1)}
                     disabled={item.quantidade <= 1}
                     aria-label="Diminuir"
                   >
@@ -115,12 +115,12 @@ export default function Carrinho() {
                   <span>{item.quantidade}</span>
                   <button
                     type="button"
-                    onClick={() => editarQuantidade(item.id, item.quantidade + 1)}
+                    onClick={() => editarQuantidade(item.produto.id, item.quantidade + 1)}
                     aria-label="Aumentar"
                   >
                     <Plus size={14} />
                   </button>
-                </div> */}
+                </div> 
 
                 <p className="cart-item__subtotal">
                  

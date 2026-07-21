@@ -70,10 +70,10 @@ export const carrinhoService = {
   remover: (idProduto: number) =>
     request<void>(`/carrinho/${idProduto}`, { method: 'DELETE' }),
 
-  editarItem: (idItemCarrinho: number, quantidade: number) =>
-    request<void>('/carrinho', {
+  editarItem: (idProduto: number, quantidade: number) =>
+    request<void>(`/carrinho/${idProduto}`, {
       method: 'PATCH',
-      body: JSON.stringify({ idItemCarrinho, quantidade }),
+      body: JSON.stringify({ itens: { quantidade } }),
     }),
 }
 

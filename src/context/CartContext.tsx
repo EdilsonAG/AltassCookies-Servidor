@@ -59,7 +59,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (!prev) return prev
       return {
         ...prev,
-        itemCarrinho: prev.itensCarrinho.map(item =>
+        itensCarrinho: prev.itensCarrinho.map(item =>
           item.produto.id === idItemCarrinho
             ? { ...item, quantidade }
             : item
