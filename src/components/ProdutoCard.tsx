@@ -27,7 +27,7 @@ export default function ProdutoCard({ produto }: Props) {
   async function handleAddToCart() {
     setAdding(true)
     try {
-      await adicionarItem(produto._id, 1)
+      await adicionarItem(produto.id, 1)
       setAdded(true)
       setTimeout(() => setAdded(false), 2000)
     } finally {

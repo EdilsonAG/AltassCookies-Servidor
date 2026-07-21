@@ -13,10 +13,10 @@ export interface Produto {
 }
 
 export interface ProdutoServidor {
-  _id: number
+  id: number
   nome: string
   descricao: number | null
-  _preco:number
+  preco:number
   url: string 
   _url: string
   _produtoImagemResponses: ProdutoImagemResponse[]
@@ -66,8 +66,8 @@ export interface CarrinhoServidor{
 
 export interface ItemCarrinhoResponseServidor {
   _carrinho: CarrinhoServidor
-  _produto: ProdutoServidor
-  _quantidade: number
+  produto: ProdutoServidor
+  quantidade: number
 }
 
 export interface CarrinhoResponse {
@@ -76,9 +76,9 @@ export interface CarrinhoResponse {
 }
 
 export interface CarrinhoResponseServidor {
-  _id: string
+  id: string
   _user: number
-  _itensCarrinho: ItemCarrinhoResponseServidor[]
+  itensCarrinho: ItemCarrinhoResponseServidor[]
 }
 
 //  Pedido 

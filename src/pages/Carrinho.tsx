@@ -7,7 +7,7 @@ export default function Carrinho() {
   const { itens, totalPreco, removerItem, editarQuantidade, loading } = useCart()
 
   console.log(itens.map(item =>{
-    item._produto.nome
+    item.produto.nome
   }))
 
   if (loading) return <div className="cart-loading">Carregando carrinho...</div>
@@ -53,15 +53,15 @@ export default function Carrinho() {
               </div>
             ))} */}
             {itens.map(item => (
-              <div key={item._produto._id} className="cart-item">
+              <div key={item.produto.id} className="cart-item">
                 <div>
                    {/* {item._produto.url.map(imagem => (
                     <img src={imagem.url} alt="" />
                   ))} */}
-                  <img src={item._produto.url} alt="" />
+                  <img src={item.produto.url} alt="" />
                 </div>
                 <div className="cart-item__img-wrap">
-                         <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto._url} alt="" />
+                         <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item.produto.url} alt="" />
                   {
 
                   // item.produto.produtoImagemResponses?.[0]?.url ? (
@@ -69,9 +69,9 @@ export default function Carrinho() {
                   // ) 
                   // <div>asdf</div>
 
-                  item._produto.url ? (
+                  item.produto.url ? (
             
-                      <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item._produto.url} alt="" />
+                      <img src={"https://oracle.bytefire.com.br/produto/fotos/"+item.produto.url} alt="" />
                     
                   // item.produto.produtoImagemResponses.map(image =>
                   //   <img key={image.id} src={image.url} alt="" />
@@ -97,9 +97,9 @@ export default function Carrinho() {
                 </div>
 
                 <div className="cart-item__info">
-                  <h3>{item._produto.nome}</h3>
+                  <h3>{item.produto.nome}</h3>
                   <p className="cart-item__preco">
-                    {(item._produto._preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    {(item.produto.preco ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </p>
                 </div>
 
@@ -124,7 +124,7 @@ export default function Carrinho() {
 
                 <p className="cart-item__subtotal">
                  
-                  {((item._produto._preco ?? 0) * item._quantidade).toLocaleString('pt-BR', {
+                  {((item.produto.preco ?? 0) * item.quantidade).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
                   })}
@@ -132,7 +132,7 @@ export default function Carrinho() {
 
                 <button
                   className="cart-item__remove"
-                  onClick={() => removerItem(item._produto._id)}
+                  onClick={() => removerItem(item.produto.id)}
                   aria-label="Remover"
                 >
                   <Trash2 size={18} />

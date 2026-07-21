@@ -59,8 +59,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (!prev) return prev
       return {
         ...prev,
-        itemCarrinho: prev._itensCarrinho.map(item =>
-          item._produto._id === idItemCarrinho
+        itemCarrinho: prev.itensCarrinho.map(item =>
+          item.produto.id === idItemCarrinho
             ? { ...item, quantidade }
             : item
         ),
@@ -76,10 +76,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   //if(carrinho[0] === null){}
-  const itens = carrinho?._itensCarrinho ?? []
-   const totalItens = itens.reduce((acc, item) => acc + item._quantidade, 0)
+  const itens = carrinho?.itensCarrinho ?? []
+   const totalItens = itens.reduce((acc, item) => acc + item.quantidade, 0)
   const totalPreco = itens.reduce(
-    (acc, item) => acc + (item._produto._preco ?? 0) * item._quantidade,
+    (acc, item) => acc + (item.produto.preco ?? 0) * item.quantidade,
     0
   )
 

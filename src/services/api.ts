@@ -68,7 +68,7 @@ export const carrinhoService = {
     }),
 
   remover: (idProduto: number) =>
-    request<void>(`/carrinho?idProduto=${idProduto}`, { method: 'DELETE' }),
+    request<void>(`/carrinho/${idProduto}`, { method: 'DELETE' }),
 
   editarItem: (idItemCarrinho: number, quantidade: number) =>
     request<void>('/carrinho', {

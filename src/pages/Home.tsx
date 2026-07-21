@@ -91,7 +91,7 @@ export default function Home() {
           <p className="empty-state">Nenhum produto disponível no momento.</p>
         ) : (
           <div className="produtos-grid">
-            {produtos.map(p => <ProdutoCard key={p._id} produto={p} />)}
+            {produtos.map(p => <ProdutoCard key={p.id} produto={p} />)}
           </div>
         )}
       </section>
