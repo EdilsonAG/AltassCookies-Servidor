@@ -302,7 +302,7 @@ export default function Login() {
      //   setErro('Email ou senha incorretos')
      // }
     } catch {
-      setErro('Erro ao conectar com o servidor')
+      setErro('Erro ao conectar com o servidor!!')
     } finally {
       setLoading(false)
     }
