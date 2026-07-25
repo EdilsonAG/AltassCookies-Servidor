@@ -12,11 +12,15 @@ import Pedidos from './pages/Pedidos'
 import './styles/global.css'
 import Callback from './pages/Callback'
 import { AuthProvider } from './context/AuthContext'
+import TagManager from '@sooro-io/react-gtm-module';
 
 
 export default function App() {
+  TagManager.initialize({ gtmId: 'GTM-P9VD7WQZ' });
   return (
+    
 <BrowserRouter>
+    
       <AuthProvider >
         <CartProvider>
           <Navbar />
