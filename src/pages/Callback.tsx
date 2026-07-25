@@ -25,7 +25,7 @@ export default function Callback() {
             credentials: 'include',   
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
-                teste: "A",
+                teste: "B",
                 code: code!,
                 codeVerifier: codeVerifier!
             })
