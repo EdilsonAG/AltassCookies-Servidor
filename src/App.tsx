@@ -12,11 +12,12 @@ import Pedidos from './pages/Pedidos'
 import './styles/global.css'
 import Callback from './pages/Callback'
 import { AuthProvider } from './context/AuthContext'
-import TagManager from '@sooro-io/react-gtm-module';
+ import { usePageTracking } from './hooks/usePageTracking'
 
 
 export default function App() {
-  TagManager.initialize({ gtmId: 'GTM-P9VD7WQZ' });
+  
+  usePageTracking();
   return (
     
 <BrowserRouter>
