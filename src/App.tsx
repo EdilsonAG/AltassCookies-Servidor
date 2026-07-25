@@ -12,32 +12,35 @@ import Pedidos from './pages/Pedidos'
 import './styles/global.css'
 import Callback from './pages/Callback'
 import { AuthProvider } from './context/AuthContext'
- import { usePageTracking } from './hooks/usePageTracking'
+import { usePageTracking } from './hooks/usePageTracking'
 
+ function AppRoutes() {
+  usePageTracking();
+
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/callback" element={<Callback />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/produtos" element={<Produtos />} />
+          <Route path="/carrinho" element={<Carrinho />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/pedidos" element={<Pedidos />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
+    </AuthProvider>
+  )
+}
 
 export default function App() {
-  
-  usePageTracking();
   return (
-    
-<BrowserRouter>
-    
-      <AuthProvider >
-        <CartProvider>
-          <Navbar />
-          <Routes>
-            <Route path="/callback" element={<Callback />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/produtos" element={<Produtos />} />
-            <Route path="/carrinho" element={<Carrinho />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/pedidos" element={<Pedidos />} />
-          </Routes>
-          <Footer />
-        </CartProvider>
-      </AuthProvider>
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   )
 }
