@@ -1,6 +1,6 @@
 import type {
-  Produto, CarrinhoResponse, PedidoResponse,
-  PagamentoRequest, PagamentoResponse, Cliente, ClienteResponse,
+   PedidoResponse,
+  PagamentoRequest, PagamentoResponse, ClienteResponse,
   ClienteCadastro,
   ProdutoServidor,
   CarrinhoResponseServidor,
@@ -25,8 +25,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   } 
   return res.json()
 
-  const text = await res.text()
-  return (text ? JSON.parse(text) : undefined) as T
+ 
 }
 
 // Produtos
